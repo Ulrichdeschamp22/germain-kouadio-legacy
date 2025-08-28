@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
+import VisionMission from '@/components/VisionMission';
+import Formations from '@/components/Formations';
+import Seminaires from '@/components/Seminaires';
+import CorpsProfessoral from '@/components/CorpsProfessoral';
+import Ressources from '@/components/Ressources';
 import Gallery from '@/components/Gallery';
 import AudioPlayer from '@/components/AudioPlayer';
 import Biography from '@/components/Biography';
@@ -54,6 +59,11 @@ const Index = () => {
       <Navigation activeSection={activeSection} />
       <main>
         <Hero />
+        <VisionMission />
+        <Formations />
+        <Seminaires />
+        <CorpsProfessoral />
+        <Ressources />
         <Gallery />
         <AudioPlayer />
         <Biography />

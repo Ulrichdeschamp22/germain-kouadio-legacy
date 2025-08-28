@@ -1,5 +1,6 @@
 import React from 'react';
-import { Calendar, MapPin, Award, BookOpen, Users, Globe } from 'lucide-react';
+import { Calendar, MapPin, Award, BookOpen, Users, Globe, Building, GraduationCap, Church } from 'lucide-react';
+import { Card } from '@/components/ui/card';
 
 const Biography: React.FC = () => {
   const timeline = [
@@ -163,28 +164,55 @@ const Biography: React.FC = () => {
           </div>
         </div>
 
-        {/* Institutions Logos */}
-        <div className="mt-16 text-center">
-          <h3 className="font-heading text-xl font-bold mb-8">Affiliations & Formations</h3>
-          <div className="flex flex-wrap justify-center items-center gap-8">
-            <div className="bg-card rounded-lg p-6 shadow-card">
+        {/* Affiliations & Formations */}
+        <Card className="mt-16 p-8 bg-gradient-to-r from-primary/5 to-gold/5">
+          <h3 className="font-heading text-2xl font-bold mb-8 text-center">
+            Affiliations & Formations
+          </h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+            <div className="text-center">
+              <div className="w-20 h-20 bg-gradient-gold rounded-full flex items-center justify-center mx-auto mb-3 shadow-golden">
+                <Building className="h-10 w-10 text-white" />
+              </div>
               <p className="font-bold text-lg">IRTN</p>
-              <p className="text-sm text-muted-foreground">Institut de Réveil</p>
+              <p className="text-xs text-muted-foreground">Institut de Réveil</p>
+              <p className="text-sm text-muted-foreground mt-1">Fondateur</p>
             </div>
-            <div className="bg-card rounded-lg p-6 shadow-card">
+            <div className="text-center">
+              <div className="w-20 h-20 bg-gradient-gold rounded-full flex items-center justify-center mx-auto mb-3 shadow-golden">
+                <Users className="h-10 w-10 text-white" />
+              </div>
               <p className="font-bold text-lg">CISPE</p>
-              <p className="text-sm text-muted-foreground">Communauté Internationale</p>
+              <p className="text-xs text-muted-foreground">Communauté Internationale</p>
+              <p className="text-xs text-muted-foreground">des Semeurs du Plein Évangile</p>
+              <p className="text-sm text-muted-foreground mt-1">Président</p>
             </div>
-            <div className="bg-card rounded-lg p-6 shadow-card">
+            <div className="text-center">
+              <div className="w-20 h-20 bg-gradient-gold rounded-full flex items-center justify-center mx-auto mb-3 shadow-golden">
+                <GraduationCap className="h-10 w-10 text-white" />
+              </div>
               <p className="font-bold text-lg">BHU</p>
-              <p className="text-sm text-muted-foreground">Beulah Heights University</p>
+              <p className="text-xs text-muted-foreground">Beulah Heights University</p>
+              <p className="text-sm text-muted-foreground mt-1">Double Doctorant</p>
             </div>
-            <div className="bg-card rounded-lg p-6 shadow-card">
+            <div className="text-center">
+              <div className="w-20 h-20 bg-gradient-gold rounded-full flex items-center justify-center mx-auto mb-3 shadow-golden">
+                <Award className="h-10 w-10 text-white" />
+              </div>
               <p className="font-bold text-lg">E.T.A.</p>
-              <p className="text-sm text-muted-foreground">École de Théologie</p>
+              <p className="text-xs text-muted-foreground">École de Théologie</p>
+              <p className="text-sm text-muted-foreground mt-1">Diplômé</p>
+            </div>
+            <div className="text-center">
+              <div className="w-20 h-20 bg-gradient-gold rounded-full flex items-center justify-center mx-auto mb-3 shadow-golden">
+                <Church className="h-10 w-10 text-white" />
+              </div>
+              <p className="font-bold text-lg">LVA</p>
+              <p className="text-xs text-muted-foreground">La Vie Abondante</p>
+              <p className="text-sm text-muted-foreground mt-1">Fondateur</p>
             </div>
           </div>
-        </div>
+        </Card>
       </div>
     </section>
   );

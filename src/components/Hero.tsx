@@ -44,9 +44,9 @@ const Hero: React.FC = () => {
           <div className="animate-on-scroll visible" style={{ animationDelay: '0.4s' }}>
             <p className="text-lg md:text-xl mb-12 max-w-3xl mx-auto leading-relaxed">
               Le Professeur Germain Kouadio est un leader spirituel, un enseignant chevronné 
-              et un expert en leadership transformationnel. Fondateur de l'IRTN et président 
-              de la CISPE, il œuvre à former une nouvelle génération de leaders en Afrique 
-              et dans le monde.
+              et un expert en leadership transformationnel. Fondateur de l'IRTN (Institut de Réveil) 
+              et président de la CISPE, il œuvre à former une nouvelle génération de leaders 
+              en Afrique et dans le monde.
             </p>
           </div>
 
@@ -56,18 +56,17 @@ const Hero: React.FC = () => {
             <Button 
               variant="golden" 
               size="lg"
-              onClick={() => scrollToSection('biographie')}
+              onClick={() => scrollToSection('formations')}
             >
               <BookOpen className="mr-2" />
-              En savoir plus
+              Découvrir les Formations
             </Button>
             <Button 
               variant="spiritual" 
               size="lg"
-              onClick={() => scrollToSection('audio')}
+              onClick={() => scrollToSection('vision')}
             >
-              <Headphones className="mr-2" />
-              Écouter un enseignement
+              Vision & Mission
             </Button>
             <Button 
               variant="spiritual" 
@@ -75,7 +74,7 @@ const Hero: React.FC = () => {
               onClick={() => scrollToSection('contact')}
             >
               <Mail className="mr-2" />
-              Contactez-le
+              S'inscrire / Contact
             </Button>
           </div>
         </div>

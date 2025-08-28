@@ -97,9 +97,26 @@ const Contact: React.FC = () => {
                 />
               </div>
 
+              <div className="mb-4">
+                <Label htmlFor="formation">Formation souhaitée</Label>
+                <select 
+                  id="formation" 
+                  className="w-full mt-1 px-3 py-2 border rounded-md bg-background"
+                >
+                  <option value="">Sélectionnez une formation</option>
+                  <option value="etapes">Étapes du Leadership</option>
+                  <option value="lecons">Leçons de Leadership</option>
+                  <option value="principes">Principes du Leadership</option>
+                  <option value="executif">Leadership Exécutif</option>
+                  <option value="spirituel">Formation Spirituelle</option>
+                  <option value="enligne">Leadership en Ligne</option>
+                  <option value="seminaire">Séminaire sur mesure</option>
+                </select>
+              </div>
+
               <Button type="submit" variant="hero" size="lg" className="w-full">
                 <Send className="mr-2" />
-                Inviter le Professeur Germain Kouadio
+                S'inscrire / Inviter le Professeur
               </Button>
             </form>
           </div>
