@@ -1,12 +1,65 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import React, { useState, useEffect } from 'react';
+import Navigation from '@/components/Navigation';
+import Hero from '@/components/Hero';
+import Gallery from '@/components/Gallery';
+import AudioPlayer from '@/components/AudioPlayer';
+import Biography from '@/components/Biography';
+import Contact from '@/components/Contact';
+import Footer from '@/components/Footer';
 
 const Index = () => {
+  const [activeSection, setActiveSection] = useState('accueil');
+
+  useEffect(() => {
+    // Animate elements on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    animatedElements.forEach(el => observer.observe(el));
+
+    // Track active section
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    const sections = document.querySelectorAll('section[id]');
+    sections.forEach(section => sectionObserver.observe(section));
+
+    return () => {
+      animatedElements.forEach(el => observer.unobserve(el));
+      sections.forEach(section => sectionObserver.unobserve(section));
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background overflow-x-hidden scroll-smooth">
+      <Navigation activeSection={activeSection} />
+      <main>
+        <Hero />
+        <Gallery />
+        <AudioPlayer />
+        <Biography />
+        <Contact />
+      </main>
+      <Footer />
     </div>
   );
 };

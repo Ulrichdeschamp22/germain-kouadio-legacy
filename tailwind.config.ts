@@ -26,11 +26,13 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					foreground: 'hsl(var(--primary-foreground))',
+					glow: 'hsl(var(--primary-glow))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
-					foreground: 'hsl(var(--secondary-foreground))'
+					foreground: 'hsl(var(--secondary-foreground))',
+					glow: 'hsl(var(--secondary-glow))'
 				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
@@ -62,6 +64,21 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				}
+			},
+			backgroundImage: {
+				'gradient-gold': 'var(--gradient-gold)',
+				'gradient-divine': 'var(--gradient-divine)',
+				'gradient-royal': 'var(--gradient-royal)',
+				'gradient-hero': 'var(--gradient-hero)'
+			},
+			boxShadow: {
+				'golden': 'var(--shadow-golden)',
+				'divine': 'var(--shadow-divine)',
+				'card': 'var(--shadow-card)'
+			},
+			fontFamily: {
+				heading: ['var(--font-heading)'],
+				body: ['var(--font-body)']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
