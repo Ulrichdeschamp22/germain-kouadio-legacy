@@ -38,7 +38,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection }) => {
         { id: 'principes', label: 'Principes du Leadership' },
         { id: 'executif', label: 'Leadership Exécutif' },
         { id: 'spirituel', label: 'Formation Spirituelle' },
-        { id: 'enligne', label: 'Leadership en Ligne' }
+        { id: 'ligne', label: 'Leadership en Ligne' }
       ]
     },
     { id: 'seminaires', label: 'Séminaires & Ateliers' },
