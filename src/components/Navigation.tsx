@@ -29,18 +29,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection }) => {
   const navItems = [
     { id: 'accueil', label: 'Accueil' },
     { id: 'vision', label: 'Vision & Mission' },
-    { 
-      id: 'formations', 
-      label: 'Formations',
-      subItems: [
-        { id: 'etapes', label: 'Étapes du Leadership' },
-        { id: 'lecons', label: 'Leçons de Leadership' },
-        { id: 'principes', label: 'Principes du Leadership' },
-        { id: 'executif', label: 'Leadership Exécutif' },
-        { id: 'spirituel', label: 'Formation Spirituelle' },
-        { id: 'ligne', label: 'Leadership en Ligne' }
-      ]
-    },
+    { id: 'formations', label: 'Formations' },
     { id: 'seminaires', label: 'Séminaires & Ateliers' },
     { id: 'professoral', label: 'Corps Professoral' },
     { id: 'contact', label: 'Contact / Inscription' }
@@ -73,46 +62,19 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection }) => {
             <NavigationMenuList>
               {navItems.map((item) => (
                 <NavigationMenuItem key={item.id}>
-                  {item.subItems ? (
-                    <>
-                      <NavigationMenuTrigger className="bg-transparent">
-                        {item.label}
-                      </NavigationMenuTrigger>
-                      <NavigationMenuContent>
-                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
-                          {item.subItems.map((subItem) => (
-                            <li key={subItem.id}>
-                              <NavigationMenuLink asChild>
-                                <button
-                                  onClick={() => scrollToSection(subItem.id)}
-                                  className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                                >
-                                  <div className="text-sm font-medium leading-none">{subItem.label}</div>
-                                </button>
-                              </NavigationMenuLink>
-                            </li>
-                          ))}
-                        </ul>
-                      </NavigationMenuContent>
-                    </>
-                  ) : (
-                    <Button
-                      variant="ghost"
-                      className={`font-medium transition-colors ${
-                        activeSection === item.id ? 'text-primary bg-accent' : ''
-                      }`}
-                      onClick={() => scrollToSection(item.id)}
-                    >
-                      {item.label}
-                    </Button>
-                  )}
+                  <Button
+                    variant="ghost"
+                    className={`font-medium transition-colors ${
+                      activeSection === item.id ? 'text-primary bg-accent' : ''
+                    }`}
+                    onClick={() => scrollToSection(item.id)}
+                  >
+                    {item.label}
+                  </Button>
                 </NavigationMenuItem>
               ))}
             </NavigationMenuList>
           </NavigationMenu>
-          <Button variant="ghost" size="icon" className="ml-4 hidden md:flex">
-            <Globe className="h-5 w-5" />
-          </Button>
 
           {/* Mobile Menu Button */}
           <Button

@@ -34,7 +34,7 @@ const Gallery: React.FC = () => {
         </div>
 
         {/* Videos Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {videos.map((video) => (
             <Card 
               key={video.id} 
@@ -64,8 +64,8 @@ const Gallery: React.FC = () => {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="bg-white/95 backdrop-blur-sm rounded-full p-4 transform transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground shadow-divine">
-                          <Play className="h-8 w-8 md:h-10 md:w-10 fill-current" />
+                        <div className="bg-white/95 backdrop-blur-sm rounded-full p-3 transform transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground shadow-divine">
+                          <Play className="h-6 w-6 md:h-8 md:w-8 fill-current" />
                         </div>
                       </div>
                     </div>
