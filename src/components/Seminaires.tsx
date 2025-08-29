@@ -61,7 +61,6 @@ const Seminaires: React.FC = () => {
                   <span>Public: {seminaire.public}</span>
                 </div>
               </div>
-              <Button variant="outline" className="w-full">S'inscrire</Button>
             </Card>
           ))}
         </div>

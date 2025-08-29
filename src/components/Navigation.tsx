@@ -43,7 +43,6 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection }) => {
     },
     { id: 'seminaires', label: 'Séminaires & Ateliers' },
     { id: 'professoral', label: 'Corps Professoral' },
-    { id: 'ressources', label: 'Ressources' },
     { id: 'contact', label: 'Contact / Inscription' }
   ];
 

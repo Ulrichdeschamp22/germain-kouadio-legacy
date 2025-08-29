@@ -5,7 +5,7 @@ import VisionMission from '@/components/VisionMission';
 import Formations from '@/components/Formations';
 import Seminaires from '@/components/Seminaires';
 import CorpsProfessoral from '@/components/CorpsProfessoral';
-import Ressources from '@/components/Ressources';
+
 import Gallery from '@/components/Gallery';
 import AudioPlayer from '@/components/AudioPlayer';
 import Biography from '@/components/Biography';
@@ -63,7 +63,7 @@ const Index = () => {
         <Formations />
         <Seminaires />
         <CorpsProfessoral />
-        <Ressources />
+        
         <Gallery />
         <AudioPlayer />
         <Biography />
