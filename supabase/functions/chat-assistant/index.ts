@@ -90,13 +90,9 @@ serve(async (req) => {
     // Initialize Supabase client
     const supabase = createClient(supabaseUrl!, supabaseServiceKey!);
 
-    // Get chat history (last 10 messages)
+    // Get chat history using secure function (last 10 messages)
     const { data: history } = await supabase
-      .from('chat_history')
-      .select('message, role')
-      .eq('session_id', sessionId)
-      .order('created_at', { ascending: true })
-      .limit(10);
+      .rpc('get_session_messages', { p_session_id: sessionId });
 
     // Build conversation history
     const messages = [
