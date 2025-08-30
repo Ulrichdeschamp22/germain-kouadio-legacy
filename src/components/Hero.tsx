@@ -15,8 +15,9 @@ const Hero: React.FC = () => {
       <div className="absolute inset-0 z-0">
         <img
           src={heroImage}
-          alt="Pasteur Germain Kouadio"
+          alt="Professeur Germain Kouadio - Leader spirituel et expert en leadership transformationnel en Afrique"
           className="w-full h-full object-cover"
+          loading="eager"
         />
         <div className="absolute inset-0 bg-gradient-hero"></div>
         <div className="absolute inset-0 cross-pattern"></div>

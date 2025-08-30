@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Globe, ChevronDown } from 'lucide-react';
+import { Menu, X, Globe, ChevronDown, Youtube, MessageCircle, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -58,23 +59,64 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection }) => {
           </div>
 
           {/* Desktop Navigation */}
-          <NavigationMenu className="hidden md:flex">
-            <NavigationMenuList>
-              {navItems.map((item) => (
-                <NavigationMenuItem key={item.id}>
-                  <Button
-                    variant="ghost"
-                    className={`font-medium transition-colors ${
-                      activeSection === item.id ? 'text-primary bg-accent' : ''
-                    }`}
-                    onClick={() => scrollToSection(item.id)}
-                  >
-                    {item.label}
-                  </Button>
-                </NavigationMenuItem>
-              ))}
-            </NavigationMenuList>
-          </NavigationMenu>
+          <div className="hidden md:flex items-center gap-4">
+            <NavigationMenu>
+              <NavigationMenuList>
+                {navItems.map((item) => (
+                  <NavigationMenuItem key={item.id}>
+                    <Button
+                      variant="ghost"
+                      className={`font-medium transition-colors ${
+                        activeSection === item.id ? 'text-primary bg-accent' : ''
+                      }`}
+                      onClick={() => scrollToSection(item.id)}
+                    >
+                      {item.label}
+                    </Button>
+                  </NavigationMenuItem>
+                ))}
+              </NavigationMenuList>
+            </NavigationMenu>
+            
+            {/* Blog Link */}
+            <Link to="/blog">
+              <Button variant="ghost" className="font-medium">
+                <BookOpen className="h-4 w-4 mr-2" />
+                Blog
+              </Button>
+            </Link>
+            
+            {/* Social Links */}
+            <div className="flex items-center gap-2 ml-4 border-l pl-4">
+              <a
+                href="https://m.youtube.com/@lavieabondantetv4252"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 hover:bg-accent rounded-md transition-colors"
+                aria-label="Chaîne YouTube La Vie Abondante"
+              >
+                <Youtube className="h-5 w-5" />
+              </a>
+              <a
+                href="https://m.youtube.com/@germainkouadio4652"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 hover:bg-accent rounded-md transition-colors"
+                aria-label="Chaîne YouTube Germain Kouadio"
+              >
+                <Youtube className="h-5 w-5" />
+              </a>
+              <a
+                href="https://wa.me/2250787144278"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 hover:bg-accent rounded-md transition-colors"
+                aria-label="Contactez-nous sur WhatsApp"
+              >
+                <MessageCircle className="h-5 w-5" />
+              </a>
+            </div>
+          </div>
 
           {/* Mobile Menu Button */}
           <Button
