@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Textarea } from '@/components/ui/textarea';
+import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { MessageCircle, Send, X, Bot, User, Loader2 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
@@ -9,8 +9,8 @@ import { useToast } from '@/components/ui/use-toast';
 
 interface Message {
   id: string;
-  content: string;
-  role: 'user' | 'assistant';
+  text: string;
+  sender: 'user' | 'assistant';
   timestamp: Date;
 }
 
@@ -19,48 +19,51 @@ const ChatBot: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      content: 'Bonjour! Je suis l\'assistant virtuel de l\'IRTN. Je peux répondre à toutes vos questions sur nos formations en leadership, notre vision, nos programmes et le Professeur Germain Kouadio. Comment puis-je vous aider?',
-      role: 'assistant',
+      text: "Bonjour ! Je suis l'assistant virtuel du Professeur Germain Kouadio et de l'IRTN. Comment puis-je vous aider aujourd'hui ?",
+      sender: 'assistant',
       timestamp: new Date()
     }
   ]);
-  const [input, setInput] = useState('');
+  const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [sessionId] = useState(() => `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
   useEffect(() => {
-    // Scroll to bottom when messages change
     if (scrollAreaRef.current) {
       scrollAreaRef.current.scrollTop = scrollAreaRef.current.scrollHeight;
     }
   }, [messages]);
 
-  const handleSendMessage = async () => {
-    if (!input.trim() || isLoading) return;
+  const sendMessage = async () => {
+    if (!inputMessage.trim() || isLoading) return;
 
     const userMessage: Message = {
       id: Date.now().toString(),
-      content: input.trim(),
-      role: 'user',
+      text: inputMessage,
+      sender: 'user',
       timestamp: new Date()
     };
 
     setMessages(prev => [...prev, userMessage]);
-    setInput('');
+    setInputMessage('');
     setIsLoading(true);
 
     try {
       const { data, error } = await supabase.functions.invoke('chat-assistant', {
-        body: { message: userMessage.content }
+        body: { 
+          message: inputMessage,
+          sessionId: sessionId
+        }
       });
 
       if (error) throw error;
 
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
-        content: data.reply || 'Désolé, je n\'ai pas pu traiter votre demande.',
-        role: 'assistant',
+        text: data.reply || "Je suis désolé, je n'ai pas pu traiter votre demande.",
+        sender: 'assistant',
         timestamp: new Date()
       };
 
@@ -68,9 +71,9 @@ const ChatBot: React.FC = () => {
     } catch (error) {
       console.error('Error sending message:', error);
       toast({
-        title: 'Erreur',
-        description: 'Impossible d\'envoyer le message. Veuillez réessayer.',
-        variant: 'destructive',
+        title: "Erreur",
+        description: "Impossible d'envoyer le message. Veuillez réessayer.",
+        variant: "destructive"
       });
     } finally {
       setIsLoading(false);
@@ -80,92 +83,100 @@ const ChatBot: React.FC = () => {
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
-      handleSendMessage();
+      sendMessage();
     }
   };
 
   return (
     <>
-      {/* Chat Button */}
-      <Button
-        onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-50 rounded-full h-14 w-14 shadow-lg bg-primary hover:bg-primary/90 transition-all duration-300 hover:scale-110"
-        aria-label="Ouvrir le chat"
-      >
-        <MessageCircle className="h-6 w-6" />
-      </Button>
+      {/* Bouton flottant toujours visible */}
+      <div className={`fixed bottom-6 right-6 z-50 ${isOpen ? 'hidden' : ''}`}>
+        <Button
+          onClick={() => setIsOpen(true)}
+          className="rounded-full w-16 h-16 shadow-lg bg-gradient-golden hover:scale-110 transition-transform duration-200"
+          size="icon"
+        >
+          <MessageCircle className="h-8 w-8 text-white" />
+        </Button>
+        <div className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 rounded-full animate-pulse flex items-center justify-center">
+          <span className="text-white text-xs font-bold">!</span>
+        </div>
+      </div>
 
-      {/* Chat Window */}
+      {/* Fenêtre de chat */}
       {isOpen && (
-        <Card className="fixed bottom-24 right-6 z-50 w-96 max-w-[calc(100vw-3rem)] h-[600px] flex flex-col shadow-2xl border-primary/20">
+        <Card className="fixed bottom-6 right-6 w-96 h-[600px] z-50 shadow-2xl border-gold/20 animate-in slide-in-from-bottom-5">
           {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b bg-gradient-to-r from-primary/10 to-primary/5">
+          <div className="bg-gradient-golden p-4 rounded-t-lg flex justify-between items-center">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
-                <Bot className="h-6 w-6 text-primary" />
+              <div className="relative">
+                <Bot className="h-8 w-8 text-white" />
+                <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
               </div>
               <div>
-                <h3 className="font-semibold">Assistant IRTN</h3>
-                <p className="text-xs text-muted-foreground">En ligne</p>
+                <h3 className="font-semibold text-white">Assistant IRTN</h3>
+                <p className="text-xs text-white/80">En ligne</p>
               </div>
             </div>
             <Button
               onClick={() => setIsOpen(false)}
-              variant="ghost"
               size="icon"
-              className="h-8 w-8"
+              variant="ghost"
+              className="text-white hover:bg-white/20"
             >
-              <X className="h-4 w-4" />
+              <X className="h-5 w-5" />
             </Button>
           </div>
 
           {/* Messages */}
-          <ScrollArea className="flex-1 p-4" ref={scrollAreaRef}>
+          <ScrollArea 
+            ref={scrollAreaRef}
+            className="h-[450px] p-4 bg-gradient-to-b from-background to-muted/20"
+          >
             <div className="space-y-4">
               {messages.map((message) => (
                 <div
                   key={message.id}
-                  className={`flex gap-3 ${
-                    message.role === 'user' ? 'flex-row-reverse' : ''
-                  }`}
+                  className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'} animate-in fade-in-0 slide-in-from-bottom-2`}
                 >
-                  <div
-                    className={`h-8 w-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-                      message.role === 'user'
-                        ? 'bg-primary text-primary-foreground'
-                        : 'bg-muted'
-                    }`}
-                  >
-                    {message.role === 'user' ? (
-                      <User className="h-5 w-5" />
-                    ) : (
-                      <Bot className="h-5 w-5" />
-                    )}
-                  </div>
-                  <div
-                    className={`max-w-[80%] rounded-lg px-4 py-2 ${
-                      message.role === 'user'
-                        ? 'bg-primary text-primary-foreground'
-                        : 'bg-muted'
-                    }`}
-                  >
-                    <p className="text-sm whitespace-pre-wrap">{message.content}</p>
-                    <p className="text-xs opacity-70 mt-1">
-                      {message.timestamp.toLocaleTimeString('fr-FR', {
-                        hour: '2-digit',
-                        minute: '2-digit'
-                      })}
-                    </p>
+                  <div className={`flex gap-2 max-w-[80%] ${message.sender === 'user' ? 'flex-row-reverse' : ''}`}>
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                      message.sender === 'user' ? 'bg-primary' : 'bg-gold'
+                    }`}>
+                      {message.sender === 'user' ? 
+                        <User className="h-5 w-5 text-white" /> : 
+                        <Bot className="h-5 w-5 text-white" />
+                      }
+                    </div>
+                    <div
+                      className={`rounded-lg p-3 ${
+                        message.sender === 'user'
+                          ? 'bg-primary text-white'
+                          : 'bg-card border border-gold/20'
+                      }`}
+                    >
+                      <p className="text-sm whitespace-pre-wrap">{message.text}</p>
+                      <p className={`text-xs mt-1 ${
+                        message.sender === 'user' ? 'text-white/70' : 'text-muted-foreground'
+                      }`}>
+                        {message.timestamp.toLocaleTimeString('fr-FR', { 
+                          hour: '2-digit', 
+                          minute: '2-digit' 
+                        })}
+                      </p>
+                    </div>
                   </div>
                 </div>
               ))}
               {isLoading && (
-                <div className="flex gap-3">
-                  <div className="h-8 w-8 rounded-full bg-muted flex items-center justify-center">
-                    <Bot className="h-5 w-5" />
-                  </div>
-                  <div className="bg-muted rounded-lg px-4 py-3">
-                    <Loader2 className="h-4 w-4 animate-spin" />
+                <div className="flex justify-start animate-in fade-in-0">
+                  <div className="flex gap-2">
+                    <div className="w-8 h-8 rounded-full bg-gold flex items-center justify-center">
+                      <Bot className="h-5 w-5 text-white" />
+                    </div>
+                    <div className="bg-card border border-gold/20 rounded-lg p-3">
+                      <Loader2 className="h-4 w-4 animate-spin text-gold" />
+                    </div>
                   </div>
                 </div>
               )}
@@ -173,26 +184,25 @@ const ChatBot: React.FC = () => {
           </ScrollArea>
 
           {/* Input */}
-          <div className="p-4 border-t">
+          <div className="p-4 border-t border-gold/20">
             <div className="flex gap-2">
-              <Textarea
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
+              <Input
+                value={inputMessage}
+                onChange={(e) => setInputMessage(e.target.value)}
                 onKeyPress={handleKeyPress}
-                placeholder="Tapez votre message..."
-                className="min-h-[60px] max-h-[120px] resize-none"
+                placeholder="Posez votre question..."
+                className="flex-1 border-gold/20 focus:border-gold"
                 disabled={isLoading}
               />
               <Button
-                onClick={handleSendMessage}
-                disabled={!input.trim() || isLoading}
-                size="icon"
-                className="h-[60px] w-[60px]"
+                onClick={sendMessage}
+                disabled={!inputMessage.trim() || isLoading}
+                className="bg-gradient-golden hover:opacity-90"
               >
                 {isLoading ? (
-                  <Loader2 className="h-5 w-5 animate-spin" />
+                  <Loader2 className="h-4 w-4 animate-spin" />
                 ) : (
-                  <Send className="h-5 w-5" />
+                  <Send className="h-4 w-4" />
                 )}
               </Button>
             </div>
