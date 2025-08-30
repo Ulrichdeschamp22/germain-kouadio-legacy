@@ -9,11 +9,8 @@ const Gallery: React.FC = () => {
   const videos = [
     { id: '1', videoId: 'FUGdIvDKvCk', title: 'Enseignement du Professeur Germain Kouadio' },
     { id: '2', videoId: '6k4EuLk5KQU', title: 'Message Puissant - Leadership Transformationnel' },
-    { id: '3', videoId: '-IVjUbtpRro', title: 'Formation des Leaders - Vision Divine' },
-    { id: '4', videoId: 'L-Ilc9aj20c', title: 'Le Leadership selon le Cœur de Dieu' },
-    { id: '5', videoId: 'qf5EoT-kjyg', title: 'Transformer les Nations par le Leadership' },
-    { id: '6', videoId: '6RvHpOTnmug', title: 'Excellence dans le Ministère' },
-    { id: '7', videoId: '-IT8DRIpuI4', title: 'Former pour Transformer - IRTN' }
+    { id: '3', videoId: 'qf5EoT-kjyg', title: 'Transformer les Nations par le Leadership' },
+    { id: '4', videoId: '-IT8DRIpuI4', title: 'Former pour Transformer - IRTN' }
   ];
 
   const getThumbnailUrl = (videoId: string) => {

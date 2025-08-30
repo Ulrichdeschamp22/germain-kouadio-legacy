@@ -154,7 +154,11 @@ const Contact: React.FC = () => {
                 <Phone className="h-5 w-5 text-primary" />
                 <div>
                   <p className="text-sm text-muted-foreground">Téléphone</p>
-                  <p className="font-medium">+225 07 87 14 42 78</p>
+                  <div className="space-y-1">
+                    <p className="font-medium">Côte d'Ivoire : +225 0787144278</p>
+                    <p className="font-medium">France : +33 6 16 88 42 50</p>
+                    <p className="font-medium">États-Unis : +1 (470) 530-8017</p>
+                  </div>
                 </div>
               </div>
 
@@ -163,7 +167,24 @@ const Contact: React.FC = () => {
                 <MapPin className="h-5 w-5 text-primary" />
                 <div>
                   <p className="text-sm text-muted-foreground">Localisation</p>
-                  <p className="font-medium">Atlanta, Georgia, USA</p>
+                  <div className="space-y-2">
+                    <a 
+                      href="https://www.google.com/maps/place/145+Capeton+Ct,+Covington,+GA+30016,+États-Unis/@33.5870352,-83.9369333,15z/data=!4m6!3m5!1s0x88f44a76a9246551:0x8bde1abca9b23a1f!8m2!3d33.5870352!4d-83.9369333!16s%2Fg%2F11c298htdb?hl=fr-fr&g_ep=Eg1tbF8yMDI1MDgyN18wIJvbDyoASAJQAg%3D%3D"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block font-medium hover:text-primary transition-colors"
+                    >
+                      Atlanta, Georgia, USA →
+                    </a>
+                    <a 
+                      href="https://www.google.com/maps?client=safari&sca_esv=2877b5094390605f&hl=fr-fr&output=search&q=geraki+center&source=lnms&fbs=AIIjpHx4nJjfGojPVHhEACUHPiMQ_pbg5bWizQs3A_kIenjtcglqFcXIGqDn9UMDOWdmf2Bo5clxNQwLqZ_UL32I9k9CjhYiL-P0JcK3VT2zAVXTbUe5pmOkb2H0w-t0FGWpqfUJOpHwBa-ZzlwEon_nw651Bw0QyjUYNQo1B8axbdM-NX35CZGAO8FU9r8vBgINmd9GK2DNOh9zaECSw3vuMEeQCRORbA&entry=mc&ved=1t:200715&ictx=111"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block font-medium hover:text-primary transition-colors"
+                    >
+                      Abidjan GERAKI CENTER →
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
