@@ -93,8 +93,9 @@ const ChatBot: React.FC = () => {
       <div className={`fixed bottom-6 right-6 z-50 ${isOpen ? 'hidden' : ''}`}>
         <Button
           onClick={() => setIsOpen(true)}
-          className="rounded-full w-16 h-16 shadow-lg bg-gradient-golden hover:scale-110 transition-transform duration-200"
+          className="rounded-full w-16 h-16 shadow-lg hover:scale-110 transition-transform duration-200"
           size="icon"
+          style={{ background: 'var(--gradient-golden)' }}
         >
           <MessageCircle className="h-8 w-8 text-white" />
         </Button>
@@ -107,7 +108,7 @@ const ChatBot: React.FC = () => {
       {isOpen && (
         <Card className="fixed bottom-6 right-6 w-96 h-[600px] z-50 shadow-2xl border-gold/20 animate-in slide-in-from-bottom-5">
           {/* Header */}
-          <div className="bg-gradient-golden p-4 rounded-t-lg flex justify-between items-center">
+          <div className="p-4 rounded-t-lg flex justify-between items-center" style={{ background: 'var(--gradient-golden)' }}>
             <div className="flex items-center gap-3">
               <div className="relative">
                 <Bot className="h-8 w-8 text-white" />
@@ -197,7 +198,8 @@ const ChatBot: React.FC = () => {
               <Button
                 onClick={sendMessage}
                 disabled={!inputMessage.trim() || isLoading}
-                className="bg-gradient-golden hover:opacity-90"
+                className="hover:opacity-90"
+                style={{ background: 'var(--gradient-golden)' }}
               >
                 {isLoading ? (
                   <Loader2 className="h-4 w-4 animate-spin" />
