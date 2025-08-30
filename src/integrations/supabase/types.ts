@@ -43,7 +43,16 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_session_messages: {
+        Args: { p_session_id: string }
+        Returns: {
+          created_at: string
+          id: string
+          message: string
+          role: string
+          session_id: string
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never
