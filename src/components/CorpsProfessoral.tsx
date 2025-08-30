@@ -1,7 +1,7 @@
 import React from 'react';
 import { Award, BookOpen, Globe, Users } from 'lucide-react';
 import { Card } from '@/components/ui/card';
-import pastorImage from '@/assets/pastor-hero.jpg';
+import pastorImage from '/lovable-uploads/b429b345-7990-4730-8145-eec32316c05b.png';
 
 const CorpsProfessoral: React.FC = () => {
   const qualifications = [
