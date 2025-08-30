@@ -7,7 +7,6 @@ import Seminaires from '@/components/Seminaires';
 import CorpsProfessoral from '@/components/CorpsProfessoral';
 
 import Gallery from '@/components/Gallery';
-import AudioPlayer from '@/components/AudioPlayer';
 import Biography from '@/components/Biography';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
@@ -65,7 +64,6 @@ const Index = () => {
         <CorpsProfessoral />
         
         <Gallery />
-        <AudioPlayer />
         <Biography />
         <Contact />
       </main>
