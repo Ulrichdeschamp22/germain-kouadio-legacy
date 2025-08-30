@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowDown, BookOpen, Headphones, Mail } from 'lucide-react';
-import heroImage from '@/assets/pastor-hero.jpg';
+import heroImage from '/lovable-uploads/49242909-5bdf-42a2-8495-a9ff17592b1b.png';
 
 const Hero: React.FC = () => {
   const scrollToSection = (sectionId: string) => {
