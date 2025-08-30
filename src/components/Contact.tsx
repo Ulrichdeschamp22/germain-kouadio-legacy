@@ -176,19 +176,19 @@ const Contact: React.FC = () => {
                 <Button 
                   variant="outline" 
                   className="w-full justify-start"
-                  onClick={() => window.open('#', '_blank')}
+                  onClick={() => window.open('https://m.youtube.com/@germainkouadio4652', '_blank')}
                 >
                   <Youtube className="mr-2 h-5 w-5 text-red-600" />
-                  Germain Kouadio
+                  GERMAIN KOUADIO
                 </Button>
                 
                 <Button 
                   variant="outline" 
                   className="w-full justify-start"
-                  onClick={() => window.open('#', '_blank')}
+                  onClick={() => window.open('https://m.youtube.com/@lavieabondantetv4252', '_blank')}
                 >
                   <Youtube className="mr-2 h-5 w-5 text-red-600" />
-                  LA VIE ABONDANTE TV
+                  LA VIE ABONDANTE
                 </Button>
               </div>
             </div>
