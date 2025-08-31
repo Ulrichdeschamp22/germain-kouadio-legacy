@@ -14,7 +14,22 @@ export type Database = {
   }
   public: {
     Tables: {
-      chat_history: {
+      "Chat bot": {
+        Row: {
+          created_at: string
+          id: number
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+        }
+        Update: {
+          created_at?: string
+          id?: number
+        }
+        Relationships: []
+      }
+      Registrations: {
         Row: {
           created_at: string
           id: string
